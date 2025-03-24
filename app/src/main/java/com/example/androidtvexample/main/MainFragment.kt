@@ -35,9 +35,11 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.androidtvexample.BrowseErrorActivity
 import com.example.androidtvexample.CardPresenter
+import com.example.androidtvexample.CardPresenterSelector
 import com.example.androidtvexample.DetailsActivity
-import com.example.androidtvexample.Movie
+import com.example.androidtvexample.movie.Movie
 import com.example.androidtvexample.R
+import com.example.androidtvexample.game_show.GameShow
 import com.example.androidtvexample.search.SearchActivity
 
 /**
@@ -120,6 +122,36 @@ class MainFragment : BrowseSupportFragment() {
             cardRowAdapter.add(movie)
         }
         rowsAdapter.add(ListRow(cardPresenterHeader, cardRowAdapter))
+
+        /* CardPresenterSelector */
+        val cardPresenterSelectorHeader = HeaderItem(2, "CardPresenterSelector")
+        val cardPresenterSelector = CardPresenterSelector()
+        val cardRowAdapter2 = ArrayObjectAdapter(cardPresenterSelector)
+        val listData: List<Any> = listOf(
+            Movie().apply {
+                title = "Movie 1"
+                studio = "Studio A"
+                cardImageUrl = "https://example.com/movie1.jpg"
+            },
+            GameShow().apply {
+                title = "Game Show 1"
+                studio = "Studio B"
+                cardImageUrl = "https://example.com/gameshow1.jpg"
+            },
+            Movie().apply {
+                title = "Movie 2"
+                studio = "Studio C"
+                cardImageUrl = "https://example.com/movie2.jpg"
+            },
+            GameShow().apply {
+                title = "Game Show 2"
+                studio = "Studio D"
+                cardImageUrl = "https://example.com/gameshow2.jpg"
+            }
+        )
+        cardRowAdapter2.addAll(0,listData)
+        rowsAdapter.add(ListRow(cardPresenterSelectorHeader, cardRowAdapter2))
+
 
         /*set*/
         adapter = rowsAdapter

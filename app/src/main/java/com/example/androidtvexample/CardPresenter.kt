@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.ViewGroup
 
 import com.bumptech.glide.Glide
+import com.example.androidtvexample.movie.Movie
 import kotlin.properties.Delegates
 
 /**

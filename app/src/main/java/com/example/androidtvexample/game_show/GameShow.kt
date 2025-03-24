@@ -1,11 +1,11 @@
-package com.example.androidtvexample
+package com.example.androidtvexample.game_show
 
 import java.io.Serializable
 
 /**
  * Movie class represents video entity with title, description, image thumbs and video url.
  */
-data class Movie(
+data class GameShow(
     var id: Long = 0,
     var title: String? = null,
     var description: String? = null,

@@ -1,4 +1,4 @@
-package com.example.androidtvexample
+package com.example.androidtvexample.movie
 
 object MovieList {
     val MOVIE_CATEGORY = arrayOf(

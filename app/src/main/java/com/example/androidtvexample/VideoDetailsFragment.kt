@@ -31,6 +31,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.androidtvexample.main.MainActivity
+import com.example.androidtvexample.movie.Movie
+import com.example.androidtvexample.movie.MovieList
 
 import java.util.Collections
 
