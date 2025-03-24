@@ -1,6 +1,5 @@
-package com.example.androidtvexample
+package com.example.androidtvexample.main
 
-import java.util.Collections
 import java.util.Timer
 import java.util.TimerTask
 
@@ -34,6 +33,12 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.androidtvexample.BrowseErrorActivity
+import com.example.androidtvexample.CardPresenter
+import com.example.androidtvexample.DetailsActivity
+import com.example.androidtvexample.Movie
+import com.example.androidtvexample.R
+import com.example.androidtvexample.search.SearchActivity
 
 /**
  * Loads a grid of cards with movies to browse.
@@ -47,6 +52,7 @@ class MainFragment : BrowseSupportFragment() {
     private var mBackgroundTimer: Timer? = null
     private var mBackgroundUri: String? = null
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.i(TAG, "onCreate")
         super.onActivityCreated(savedInstanceState)
@@ -68,10 +74,10 @@ class MainFragment : BrowseSupportFragment() {
 
     private fun prepareBackgroundManager() {
         mBackgroundManager = BackgroundManager.getInstance(activity)
-        mBackgroundManager.attach(activity!!.window)
-        mDefaultBackground = ContextCompat.getDrawable(context!!, R.drawable.default_background)
+        mBackgroundManager.attach(requireActivity().window)
+        mDefaultBackground = ContextCompat.getDrawable(requireContext(), R.drawable.default_background)
         mMetrics = DisplayMetrics()
-        activity!!.windowManager.defaultDisplay.getMetrics(mMetrics)
+        requireActivity().windowManager.defaultDisplay.getMetrics(mMetrics)
     }
 
     private fun setupUIElements() {
@@ -82,9 +88,9 @@ class MainFragment : BrowseSupportFragment() {
         isHeadersTransitionOnBackEnabled = true
 
         // set fastLane (or headers) background color
-        brandColor = ContextCompat.getColor(context!!, R.color.fastlane_background)
+        brandColor = ContextCompat.getColor(requireContext(), R.color.fastlane_background)
         // set search icon color
-        searchAffordanceColor = ContextCompat.getColor(context!!, R.color.search_opaque)
+        searchAffordanceColor = ContextCompat.getColor(requireContext(), R.color.search_opaque)
     }
 
     private fun loadRows() {
@@ -121,8 +127,10 @@ class MainFragment : BrowseSupportFragment() {
 
     private fun setupEventListeners() {
         setOnSearchClickedListener {
-            Toast.makeText(context!!, "Implement your own in-app search", Toast.LENGTH_LONG)
+            Toast.makeText(requireContext(), "Implement your own in-app search", Toast.LENGTH_LONG)
                 .show()
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(intent)
         }
 
         onItemViewClickedListener = ItemViewClickedListener()
@@ -176,7 +184,7 @@ class MainFragment : BrowseSupportFragment() {
     private fun updateBackground(uri: String?) {
         val width = mMetrics.widthPixels
         val height = mMetrics.heightPixels
-        Glide.with(context!!)
+        Glide.with(requireContext())
             .load(uri)
             .centerCrop()
             .error(mDefaultBackground)

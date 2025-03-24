@@ -1,7 +1,8 @@
-package com.example.androidtvexample
+package com.example.androidtvexample.main
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import com.example.androidtvexample.R
 
 /**
  * Loads [MainFragment].
